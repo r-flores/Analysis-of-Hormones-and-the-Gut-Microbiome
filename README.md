@@ -274,7 +274,7 @@ cyt = exportNetworkToCytoscape(modTOM,
                                nodeAttr = moduleColors[inModule])
 
 ```
-The files generated under Code/Results can noe be imported into cytoscape to create the complete network.
+The files generated under Code/Results can now be imported into cytoscape to create the complete network.
 Using Cytoscape we filtered under the gene Bcl6 to create induced subnetworks for genes co-expressed with Bcl6 which can be seen below
 ![](Images/ConvR_Male_Network.png)
 <br>
