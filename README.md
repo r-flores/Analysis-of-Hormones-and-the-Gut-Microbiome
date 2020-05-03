@@ -175,3 +175,91 @@ and generate the adjacency matrix.
 softpower = 16
 adjacency = adjacency(datExpr, power = softpower)
 ```
+Create a Topological Overlap Matrix to cluters similar genes.
+```R
+TOM = TOMsimilarity(adjacency);
+dissTOM = 1-TOM
+
+geneTree = hclust(as.dist(dissTOM), method = "average");
+
+sizeGrWindow(12,9)
+plot(geneTree, xlab="", sub="", main = "clustering on TOM-based dissimilarity",
+     labels = FALSE, hang = 0.06);
+
+
+minModuleSize = 100;
+
+dynamicMods = cutreeDynamic(dendro = geneTree, distM = dissTOM,
+                            deepSplit = 2, pamRespectsDendro = FALSE,
+                            minClusterSize = minModuleSize);
+table(dynamicMods)
+
+dynamicColors = labels2colors(dynamicMods)
+table(dynamicColors)
+
+sizeGrWindow(8,6)
+plotDendroAndColors(geneTree, dynamicColors, "Dynamic Tree Cut",
+                    dendroLabels = FALSE, hang = 0.06,
+                    addGuide = TRUE, guideHang = 0.08,
+                    main = "Gene dendrogram and module colors")
+```
+Merge expression profiles based on the eigengenes.
+```R
+MEList = moduleEigengenes(datExpr, colors = dynamicColors)
+MEs = MEList$eigengenes
+
+MEDiss = 1-cor(MEs);
+
+METree = hclust(as.dist(MEDiss), method = "average");
+
+sizeGrWindow(7, 6)
+plot(METree, main = "Clustering of module eigengenes",
+     xlab = "", sub = "")
+
+MEDissThres = 0.32
+
+abline(h=MEDissThres, col = "red")
+
+merge = mergeCloseModules(datExpr, dynamicColors, cutHeight = MEDissThres, verbose = 3)
+# Merged module colors
+mergedColors = merge$colors;
+
+mergedMEs = merge$newMEs
+
+sizeGrWindow(12, 9)
+
+plotDendroAndColors(geneTree, cbind(dynamicColors, mergedColors),
+                    c("Dynamic Tree Cut", "Merged dynamic"),
+                    dendroLabels = FALSE, hang = 0.06,
+                    addGuide = TRUE, guideHang = 0.08,
+                    main = "Cluster Dendrogram")
+
+moduleColors = mergedColors
+colorOrder = c("grey", standardColors(50));
+moduleLabels = match(moduleColors, colorOrder)-1;
+MEs = mergedMEs
+```
+Export the Topological Overlap Matrix to a text file which can be imported to Cytoscape
+```R
+##Check MEs to detrermine the possible modules that can be transferred to Cytoscape
+modules = c("darkorange", "midnightblue", "blue", "white", "green", "yellow", "grey")
+
+
+probes = Female_gf_samples_genes$probe
+inModule = is.finite(match(moduleColors, modules))
+modProbes = probes[inModule]
+modGenes = Female_gf_samples_genes$gene_symbol[match(modProbes, Female_gf_samples_genes$probe)]
+
+modTOM = TOM[inModule, inModule]
+dimnames(modTOM) = list(modProbes, modProbes)
+
+cyt = exportNetworkToCytoscape(modTOM,
+                               edgeFile = paste("Results/CytoscapeInput-edges-", paste(modules, collapse="-"), ".txt", sep=""),
+                               nodeFile = paste("Results/CytoscapeInput-nodes-", paste(modules, collapse="-"), ".txt", sep=""),
+                               weighted = TRUE,
+                               threshold = 0.02,
+                               nodeNames = modProbes,
+                               altNodeNames = modGenes,
+                               nodeAttr = moduleColors[inModule])
+
+```
