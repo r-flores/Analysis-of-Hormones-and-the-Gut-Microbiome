@@ -282,5 +282,5 @@ Functional Analysis<br>
 <br>
 Using Cytoscape we export the list do genes and perform a functional analysis using PANTHER<br>
 http://www.pantherdb.org/<br>
-The following is the functioanlk analysis
+The following is the functional analysis
 ![](Images/ConvR_male_MolecularFunction.PNG)
