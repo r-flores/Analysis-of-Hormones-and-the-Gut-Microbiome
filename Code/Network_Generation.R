@@ -1,8 +1,7 @@
-#Install the following packages if required
-#BiocManager::install("WGCNA")
-#if (!requireNamespace("BiocManager", quietly = TRUE))
-#install.packages("BiocManager")
-#BiocManager::install("DESeq2")
+BiocManager::install("WGCNA")
+if (!requireNamespace("BiocManager", quietly = TRUE))
+install.packages("BiocManager")
+BiocManager::install("DESeq2")
 
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 library(htmltools)
@@ -81,7 +80,7 @@ GF <- t(GF)
 GH <- t(GH)
 Female_convR <- t(Female_convR)
 Female_GF <- t(Female_GF)
-##Check for Data outliers (Should return TRUE)
+##Check For population(Should return TRUE)
 gsg = goodSamplesGenes(convR, verbose = 3);
 gsg$allOK
 gsg = goodSamplesGenes(GF, verbose = 3);
