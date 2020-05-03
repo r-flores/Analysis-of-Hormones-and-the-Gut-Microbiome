@@ -81,7 +81,7 @@ GF <- t(GF)
 GH <- t(GH)
 Female_convR <- t(Female_convR)
 Female_GF <- t(Female_GF)
-##Check For outliers (Should return TRUE)
+##Check for Data outliers (Should return TRUE)
 gsg = goodSamplesGenes(convR, verbose = 3);
 gsg$allOK
 gsg = goodSamplesGenes(GF, verbose = 3);
