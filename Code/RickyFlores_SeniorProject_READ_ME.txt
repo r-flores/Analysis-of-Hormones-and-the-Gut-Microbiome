@@ -18,5 +18,15 @@ Conventionally Rasied Female Mice = Female_convR
 Germ Free Rasied Female Mice = Female_GF
 *Note If you chose to generate a different network you must specify a different cut hight on line 114 
 
+Once the script has finished you will be left with two files one for nodes and one for edges.
+Import the edges file to Cytoscape and specifiy the following parameters
+weight = Edge Attribute
+fromAltName = Source Node
+toAltName = Target Node
+fromNode = Source Node Attribute
+toNode = Target Node Attribute
+
+Once this is done your will have your final network completed and ready for analysis.
+
 For a detailed breakdown of the code please refer to the comments within the R-script and or follow the walkthrough Provided at:
 https://github.com/r-flores/Analysis-of-Hormones-and-the-Gut-Microbiome
