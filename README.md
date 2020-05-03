@@ -107,7 +107,8 @@ gsg$allOK
 gsg = goodSamplesGenes(GH, verbose = 3);
 gsg$allOK
 ```
-#Network Generation
+Network Generation<br>
+<br>
 First select which network you wish to create.<br>
 [1]Conventionally Rasied Male Mice = convR<br>
 [2]Germ Free Rasied Male Mice = GF<br>
@@ -138,7 +139,10 @@ keepSamples = (clust1==1)
 
 datExpr = datExpr0[keepSamples, ]
 ```
-Uncomment the following if you wish to save all samples.<br>
+The following shows the sampling of samples and for conventually rasied mice 1 outlier is dtected and removed from the rest of the network generation. 
+![](Images/ConvR_Sample_Clustering.jpeg)
+
+Uncomment the following code if you wish to save all samples.<br>
 A count of the genes and samples will be recorded
 ```R
 ###IF No Samples need to be removed
@@ -241,6 +245,11 @@ colorOrder = c("grey", standardColors(50));
 moduleLabels = match(moduleColors, colorOrder)-1;
 MEs = mergedMEs
 ```
+The clustering of gene modules following along with the following results.
+![](Images/ConvR_eigengenes_clustering.jpeg)
+
+The final Topological Overlap Matrix with merged modules that will be exported.
+![](Images/ConvR_Clustering_Dendrogram.jpeg)
 Export the Topological Overlap Matrix to a text file which can be imported to Cytoscape
 ```R
 ##Check MEs to detrermine the possible modules that can be transferred to Cytoscape
@@ -265,3 +274,13 @@ cyt = exportNetworkToCytoscape(modTOM,
                                nodeAttr = moduleColors[inModule])
 
 ```
+The files generated under Code/Results can noe be imported into cytoscape to create the complete network.
+Using Cytoscape we filtered under the gene Bcl6 to create induced subnetworks for genes co-expressed with Bcl6 which can be seen below
+![](Images/ConvR_Male_Network.png)
+<br>
+Functional Analysis<br>
+<br>
+Using Cytoscape we export the list do genes and perform a functional analysis using PANTHER<br>
+http://www.pantherdb.org/<br>
+The following is the functioanlk analysis
+![](Images/ConvR_male_MolecularFunction.PNG)
