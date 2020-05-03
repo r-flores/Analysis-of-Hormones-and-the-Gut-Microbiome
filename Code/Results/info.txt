@@ -1,0 +1,1 @@
+This folder will contain the network results that can be transferred to Cytoscape
