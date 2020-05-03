@@ -1,7 +1,8 @@
-BiocManager::install("WGCNA")
-if (!requireNamespace("BiocManager", quietly = TRUE))
-install.packages("BiocManager")
-BiocManager::install("DESeq2")
+#Install the following packages if required
+#BiocManager::install("WGCNA")
+#if (!requireNamespace("BiocManager", quietly = TRUE))
+#install.packages("BiocManager")
+#BiocManager::install("DESeq2")
 
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 library(htmltools)
