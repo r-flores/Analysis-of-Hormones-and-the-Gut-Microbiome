@@ -276,7 +276,7 @@ cyt = exportNetworkToCytoscape(modTOM,
 ```
 The files generated under Code/Results can now be imported into cytoscape to create the complete network.<br>
 Import the edge file to Cytoscape<br>
-Set the following in Cytoscape for each network: 
+Set the following in Cytoscape for each network:<br>
 weight = Edge Attribute<br>
 fromAltName = Source Node<br>
 toAltName = Target Node<br>
@@ -285,7 +285,6 @@ toNode = Target Node Attribute<br>
 
 Using Cytoscape we filtered under the gene Bcl6 to create induced subnetworks for genes co-expressed with Bcl6 which can be seen below
 ![](Images/ConvR_Male_Network.png)
-
 <br>
 Functional Analysis<br>
 <br>
