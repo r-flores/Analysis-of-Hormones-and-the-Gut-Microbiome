@@ -169,7 +169,9 @@ plot(sft$fitIndices[,1], sft$fitIndices[,5],
      main = paste("Mean connectivity"))
 text(sft$fitIndices[,1], sft$fitIndices[,5], labels=powers, cex=cex1,col="red")
 ```
-Based on the topological Analysis we chose a soft-power of 16
+![](Images/ConvR_Scale_SoftPower.jpeg)
+
+Based on the topological Analysis we chose a soft-power of 16 as seen in the image above.
 and generate the adjacency matrix.
 ```R
 softpower = 16
