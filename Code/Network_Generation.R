@@ -109,9 +109,9 @@ plot(sampleTree1, main = "Sample clustering to detect outliers", sub="", xlab=""
 
 # We detect one outlier in the data for ConvR mice  and will remove it (Sample_CTR2_Liver_ZT10)
 # Plot a line to show the cut
-abline(h = 10000, col = "red");
+abline(h = 3000, col = "red");
 # Determine cluster under the line
-clust1 = cutreeStatic(sampleTree1, cutHeight = 10000, minSize = 10)
+clust1 = cutreeStatic(sampleTree1, cutHeight = 3000, minSize = 10)
 table(clust1)
 # clust 1 contains the samples we want to keep.
 keepSamples = (clust1==1)
@@ -119,8 +119,7 @@ keepSamples = (clust1==1)
 datExpr = datExpr0[keepSamples, ]
 
 ###IF No Samples need to be removed###
-datExpr = datExpr0##########
-############################
+#datExpr = datExpr0
 
 nGenes = ncol(datExpr)
 nSamples = nrow(datExpr)
@@ -150,7 +149,7 @@ plot(sft$fitIndices[,1], -sign(sft$fitIndices[,3])*sft$fitIndices[,2],
 text(sft$fitIndices[,1], -sign(sft$fitIndices[,3])*sft$fitIndices[,2],
      labels=powers,cex=cex1,col="red");
 # this line corresponds to using an R^2 cut-off of h
-abline(h=0.7,col="red")
+abline(h=0.6,col="red")
 # Mean connectivity as a function of the soft-thresholding power
 plot(sft$fitIndices[,1], sft$fitIndices[,5],
      xlab="Soft Threshold (power)",ylab="Mean Connectivity", type="n",
@@ -158,6 +157,8 @@ plot(sft$fitIndices[,1], sft$fitIndices[,5],
 text(sft$fitIndices[,1], sft$fitIndices[,5], labels=powers, cex=cex1,col="red")
 ##We determine the Power to be 16##
 ###Co-Expression adjacencies and similarity for ConvRMice###
+############################################################################
+############################################################################
 softpower = 16
 adjacency = adjacency(datExpr, power = softpower)
 
@@ -235,7 +236,7 @@ MEs = mergedMEs
 
 #######Export to Cytoscape###############
 # Select modules
-modules = c("green", "cyan", "pink", "darkgrey", "grey60", "grey")
+modules = c("darkorange", "midnightblue", "blue", "white", "green", "yellow", "grey")
 # Select module probes
 #####################
 ##################### replace _sample_genes with the sample currently in use.
