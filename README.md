@@ -1,5 +1,5 @@
 # Analysis-of-Hormones-and-the-Gut-Microbiome
-Repo for BIOI 4890 Senior Project Spring 2020
+Repo for Ricky Flores's BIOI 4890 Senior Project Spring 2020
 Clone the repository or download the Zip file,
 this folder will conatin all the necessary data
 and R script which when run will generate the network
